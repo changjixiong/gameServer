@@ -6,43 +6,31 @@
 #include "ThreadLib/ThreadLib.h"
 #include "SocketLib/SocketLib.h"
 
+#include "UserDB/SCUserDB.h"
+#include "Login/SCLogon.h"
+#include "Chat/SCChat.h"
+
 //由于windows.h和winsock2.h的关系
 //"SocketLib/SocketLib.h"必须先包含
 //或者ifndef WIN32_LEAN_AND_MEAN define WIN32_LEAN_AND_MEAN
 
 using namespace std;
 
-ThreadLib::Mutex m;
-
-void PrintThread(void *data)
-{
-	char c=(char)data;
-	
-	for (int i = 0; i < 200; i++)
-	{
-		m.Lock();
-		for (int j = 0; j < 50; j++)
-		{
-			cout << c;
-			cout.flush();
-		}
-		m.Unlock();
-	}
-}
-
 int main()
 {
-	ThreadLib::ThreadID a,b;
+	using SocketLib::Telnet;
 	
-	//BasicLib::TextLog systemLog("syslog.txt","system Log");
-	//systemLog.Log("Log Entry");
-	a = ThreadLib::Create(PrintThread, (void*)'a');
-	b = ThreadLib::Create(PrintThread, (void*)'b');
+	SocketLib::ListeningManager<Telnet, SCLogon> lm;
+	SocketLib::ConnectionManager<Telnet, SCLogon> cm( 128 );
 	
-	ThreadLib::WaitForFinish( b );
-	ThreadLib::WaitForFinish( a );
+	lm.SetConnectionManager( &cm );
+	lm.AddPort( 5099 );
 	
-	char c;
-	cin >> c;
-	return 0;
+	while( 1 )
+	{
+		lm.Listen();
+		cm.Manage();
+		ThreadLib::YieldThread();
+	}
+	
 }
