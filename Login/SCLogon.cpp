@@ -5,7 +5,7 @@
 // 
 
 #include "SCLogon.h"
-#include "../Chat/SCChat.h"
+#include "../Logic/SCChat.h"
 #include "../UserDB/SCUserDB.h"
 
 using namespace SocketLib;

@@ -8,7 +8,7 @@
 
 #include "UserDB/SCUserDB.h"
 #include "Login/SCLogon.h"
-#include "Chat/SCChat.h"
+#include "Logic/SCChat.h"
 
 //由于windows.h和winsock2.h的关系
 //"SocketLib/SocketLib.h"必须先包含

@@ -220,18 +220,6 @@ SOURCE=.\ThreadLib\ThreadLibFunctions.h
 SOURCE=.\ThreadLib\ThreadLibMutex.h
 # End Source File
 # End Group
-# Begin Group "Chat"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\Chat\SCChat.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\Chat\SCChat.h
-# End Source File
-# End Group
 # Begin Group "Login"
 
 # PROP Default_Filter ""
@@ -254,6 +242,18 @@ SOURCE=.\UserDB\SCUserDB.cpp
 # Begin Source File
 
 SOURCE=.\UserDB\SCUserDB.h
+# End Source File
+# End Group
+# Begin Group "Logic"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\Logic\SCChat.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Logic\SCChat.h
 # End Source File
 # End Group
 # End Target
