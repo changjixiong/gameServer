@@ -105,7 +105,19 @@ SOURCE=.\BasicLib\BasicLib.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\BasicLib\BasicLibFunctions.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\BasicLib\BasicLibLogger.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\BasicLib\BasicLibRandom.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\BasicLib\BasicLibRandom.h
 # End Source File
 # Begin Source File
 

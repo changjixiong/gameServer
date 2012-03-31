@@ -1,30 +1,38 @@
+// MUD Programming
+// Ron Penton
+// (C)2003
+// SocketLibErrors.cpp - This file contains all error-related functions and
+// definitions.
+
+
 #include "SocketLibErrors.h"
+
+
 
 namespace SocketLib
 {
-	// ========================================================================
+
+
+    // ========================================================================
     // Description: This function acts as a simple wrapper for retrieving
     //              socket library errors from errno or h_errno.
     // ========================================================================
-	Error GetError( bool p_errno )
-	{
-		#ifdef WIN32
-			return TranslateError( WSAGetLastError(), p_errno );
-		#else
-			if ( p_errno == true )
-			{
-				return TranslateError( errno, p_errno );
-			}
-			else
-			{
-				return TranslateError( h_errno, p_errno );
-			}
-		#endif
+    Error GetError( bool p_errno )
+    {
+        #ifdef WIN32
+            return TranslateError( WSAGetLastError(), p_errno );
+        #else
+            if( p_errno == true )
+                return TranslateError( errno, p_errno );
+            else
+                return TranslateError( h_errno, p_errno );
+        #endif
 
-		return ESeriousError;
-	}
+        return ESeriousError;
+    }
 
-	// ========================================================================
+
+    // ========================================================================
     // Description: This translates error codes from the native platoform
     //              format into the SocketLib format
     // ========================================================================
@@ -204,36 +212,37 @@ namespace SocketLib
         }
     #endif
 
-	// ====================================================================
-	// Function:    Exception
-	// Purpose:     To initialize the socket exception with a specific
-	//              error code.
     // ====================================================================
-	Exception::Exception( Error p_code )
-	{
-		m_code = p_code;
-		if ( p_code == ENotAvailable )
-		{
-			p_code = p_code;
-		}
-	}
-	
-	// ====================================================================
+    // Function:    Exception
+    // Purpose:     To initialize the socket exception with a specific
+    //              error code.
+    // ====================================================================
+    Exception::Exception( Error p_code )
+    {
+        m_code = p_code;
+
+        if( p_code == ENotAvailable )
+        {
+            p_code = p_code;
+        }
+    }
+
+    // ====================================================================
     // Function:    Error
     // Purpose:     To retrieve the error code of the socket.
     // ====================================================================
-	Error Exception::ErrorCode()
-	{
-		return m_code;
-	}
+    Error Exception::ErrorCode()
+    {
+        return m_code;
+    }
 
-	// ====================================================================
+    // ====================================================================
     // Function:    PrintError
     // Purpose:     Print the error message to a string
     // ====================================================================
-	std::string Exception::PrintError()
-	{
-		switch( m_code )
+    std::string Exception::PrintError()
+    {
+        switch( m_code )
         {
         case EOperationWouldBlock:
             return "Nonblocking socket operation would have blocked";
@@ -245,7 +254,7 @@ namespace SocketLib
             return "A destination address is required";
         case EMessageTooLong:
             return "The message was too long";
-		case EProtocolNotSupported:
+            case EProtocolNotSupported:
             return "The protocol is not supported";
         case EProtocolNotSupportedBySocket:
             return "The socket type is not supported";
@@ -306,5 +315,7 @@ namespace SocketLib
         default:
             return "undefined or serious error";
         }
-	}
-}
+    }
+
+
+} // end namespace SocketLib

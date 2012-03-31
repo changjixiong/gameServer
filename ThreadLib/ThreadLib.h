@@ -1,8 +1,16 @@
-#ifndef THREADLIB_HEAD
-#define THREADLIB_HEAD
+// MUD Programming
+// Ron Penton
+// (C)2003
+// ThreadLib.h - Main header for the thread library.
 
-#include "ThreadException.h"
+#ifndef THREADLIB_H
+#define THREADLIB_H
+
+// ============================================================================
+//  Include Files for the threading libraries
+// ============================================================================
 #include "ThreadLibFunctions.h"
+#include "ThreadException.h"
 #include "ThreadLibMutex.h"
 
 #endif
