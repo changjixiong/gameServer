@@ -19,6 +19,9 @@ void SCLogon::Handle( string p_data )
     // record the connection pointer for future reference.
     Connection<Telnet>* conn = m_connection;
 
+	
+	printf(p_data.c_str());
+	printf("\r\n");
     // make sure name is valid
     if( !UserDatabase::IsValidName( p_data ) )
     {

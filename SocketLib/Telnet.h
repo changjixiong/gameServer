@@ -46,7 +46,6 @@ const std::string bwhite = "\x1B[47m";
 
 const std::string newline = "\r\n\x1B[0m";
 
-
 class Telnet
 {
 

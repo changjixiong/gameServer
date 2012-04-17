@@ -17,6 +17,9 @@ void SCChat::Handle( string p_data )
     // get the users name
     string name = UserDatabase::find( m_connection )->name;
 
+	printf(p_data.c_str());
+	printf("\r\n");
+
     // message is a command
     if( p_data[0] == '/' )
     {
@@ -67,7 +70,9 @@ void SCChat::Handle( string p_data )
 // ------------------------------------------------------------------------
 void SCChat::Enter()
 {
-    SendAll( bold + yellow + UserDatabase::find( m_connection )->name +
+//     SendAll( bold + yellow + UserDatabase::find( m_connection )->name +
+//              " has entered the room." );
+	SendAll( UserDatabase::find( m_connection )->name +
              " has entered the room." );
 }
 
@@ -103,7 +108,9 @@ void SCChat::Flooded()
 // ------------------------------------------------------------------------
 void SCChat::CloseConnection( const string& p_reason )
 {
-    SendAll( bold + red + UserDatabase::find( m_connection )->name +
+//     SendAll( bold + red + UserDatabase::find( m_connection )->name +
+//         " " + p_reason );
+	SendAll( UserDatabase::find( m_connection )->name +
         " " + p_reason );
 }
 
@@ -118,7 +125,8 @@ void SCChat::SendAll( const string& p_message )
     // loop through every connection and send the message.
     while( itr != UserDatabase::end() )
     {
-        itr->connection->Protocol().SendString( *itr->connection, p_message + newline );
+        //itr->connection->Protocol().SendString( *itr->connection, p_message + newline );
+		itr->connection->Protocol().SendString( *itr->connection, p_message);
         ++itr;
     }
 }
