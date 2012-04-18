@@ -58,7 +58,7 @@ void SCChat::Handle( string p_data )
     {
         if( BasicLib::TrimWhitespace( p_data ).size() > 0 )
         {
-            SendAll( green + bold + "<" + name + "> " + reset + p_data );
+            SendAll( "["+p_data+"]");
         }
     }
 
@@ -72,8 +72,7 @@ void SCChat::Enter()
 {
 //     SendAll( bold + yellow + UserDatabase::find( m_connection )->name +
 //              " has entered the room." );
-	SendAll( UserDatabase::find( m_connection )->name +
-             " has entered the room." );
+	SendAll( "["+ UserDatabase::find( m_connection )->name + " entered]" );
 }
 
 

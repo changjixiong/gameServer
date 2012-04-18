@@ -25,25 +25,20 @@ void SCLogon::Handle( string p_data )
     // make sure name is valid
     if( !UserDatabase::IsValidName( p_data ) )
     {
-        conn->Protocol().SendString( *conn, //red + bold + 
-            "Sorry, that is an invalid username.\r\n" +
-            string("Please enter another username: "));// + reset + bold );
+        conn->Protocol().SendString( *conn, "[invalid username]");
         return;
     }
 
     // make sure name doesn't exist already
     if( UserDatabase::HasUser( p_data ) )
     {
-        conn->Protocol().SendString( *conn, //red + bold + 
-            "Sorry, that name is already in use.\r\n" +
-            string("Please enter another username: "));// + reset );
+        conn->Protocol().SendString( *conn, "[user is existence");
         return;
     }
 
     // add the user
     UserDatabase::AddUser( conn, p_data );
-    conn->Protocol().SendString( *conn, "Thank you for joining us, " + 
-                                 p_data);// + newline );
+    conn->Protocol().SendString( *conn, "[" +p_data+" is logining]");
 
     // set the new state machine
     conn->RemoveHandler();
@@ -58,9 +53,7 @@ void SCLogon::Handle( string p_data )
 void SCLogon::Enter()
 {
     // welcome the new user
-    m_connection->Protocol().SendString( *m_connection, //green + bold + 
-		"Welcome To SimpleChat!\r\n" + 
-        string("Please enter your username: "));// + reset + bold );
+    m_connection->Protocol().SendString( *m_connection, "[user name]");
 }
 
 
