@@ -38,7 +38,7 @@ void SCLogon::Handle( string p_data )
 
     // add the user
     UserDatabase::AddUser( conn, p_data );
-    conn->Protocol().SendString( *conn, "[" +p_data+" is logining]");
+    //conn->Protocol().SendString( *conn, "[" +p_data+" is logining]");
 
     // set the new state machine
     conn->RemoveHandler();
